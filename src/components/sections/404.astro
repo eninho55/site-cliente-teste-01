@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+
+<BaseLayout title="Página não encontrada | Psicóloga Fabíola Medeiros">
+  <Navbar slot="navbar" />
+  
+  <div class="overflow-x-hidden min-h-[60vh] flex items-center justify-center px-4 py-20 bg-background">
+    <div class="text-center space-y-6 max-w-md animate-fade-in">
+      <h1 class="font-display text-7xl md:text-9xl text-accent/20">404</h1>
+      <h2 class="font-display text-2xl md:text-3xl text-text-primary font-semibold">Página não encontrada</h2>
+      <p class="text-text-secondary leading-relaxed">
+        Parece que você se perdeu no caminho. Não se preocupe, vamos te ajudar a voltar para um espaço seguro e acolhedor.
+      </p>
+      <a href="/" class="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white bg-accent rounded-full hover:bg-accent-hover transition-all duration-300 shadow-lg shadow-accent/20">
+        Voltar para a página inicial
+      </a>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

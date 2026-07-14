@@ -1,0 +1,68 @@
+---
+// src/components/sections/Navbar.astro
+---
+<nav class="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border transition-all duration-300">
+  <div class="w-full max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
+    
+    <!-- Logo -->
+    <a href="/#inicio" class="font-display text-xl md:text-2xl text-text-primary tracking-tight whitespace-nowrap">
+      Psicóloga Fabíola<span class="text-accent">.</span>
+    </a>
+
+    <!-- Links de Navegação (Desktop) -->
+    <div class="hidden lg:flex items-center gap-6 xl:gap-8">
+      <a href="/#sobre" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Sobre</a>
+      <a href="/#servicos" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Serviços</a>
+      <a href="/#depoimentos" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Depoimentos</a>
+      <a href="/#faq" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Dúvidas</a>
+      <a href="/#contato" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Localização</a>
+    </div>
+
+    <!-- CTA (Desktop) -->
+    <a href="/#contato" class="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-accent rounded-full hover:bg-accent-hover transition-colors duration-300">
+      Agendar Consulta
+    </a>
+
+    <!-- Botão Mobile (Hamburger) -->
+    <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center text-text-primary p-2 flex-shrink-0" aria-label="Abrir menu">
+      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Menu Mobile Dropdown -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-surface border-t border-border">
+    <div class="px-4 py-6 space-y-4 flex flex-col">
+      <a href="/#sobre" class="text-base font-medium text-text-secondary hover:text-accent py-2">Sobre</a>
+      <a href="/#servicos" class="text-base font-medium text-text-secondary hover:text-accent py-2">Serviços</a>
+      <a href="/#depoimentos" class="text-base font-medium text-text-secondary hover:text-accent py-2">Depoimentos</a>
+      <a href="/#faq" class="text-base font-medium text-text-secondary hover:text-accent py-2">Dúvidas Frequentes</a>
+      <a href="/#contato" class="text-base font-medium text-text-secondary hover:text-accent py-2 font-semibold">Localização e Contato</a>
+      
+      <a href="/#contato" class="w-full text-center px-6 py-3.5 text-base font-semibold text-white bg-accent rounded-full hover:bg-accent-hover transition-colors mt-2">
+        Agendar Consulta
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+</script>

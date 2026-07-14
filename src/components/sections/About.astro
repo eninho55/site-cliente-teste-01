@@ -1,0 +1,83 @@
+---
+// src/components/sections/About.astro
+import fotoSobre from '../../assets/psicologa-fabiola-tubarao-sc.jpeg';
+---
+
+<section id="sobre" class="scroll-mt-24 py-20 md:py-32 px-4 md:px-8 bg-surface relative overflow-hidden">
+  
+  <!-- Detalhe decorativo de fundo (Círculo suave) -->
+  <div class="absolute -top-20 -left-20 w-64 h-64 bg-accent-light rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+    
+    <!-- Lado Esquerdo: Imagem e CRP -->
+    <div class="relative flex justify-center md:justify-start">
+      <!-- Moldura decorativa atrás da foto -->
+      <div class="absolute top-6 -left-4 md:-left-8 w-full h-full border-2 border-accent/20 rounded-[2rem] -z-10"></div>
+      
+      <!-- Foto Principal (AGORA USANDO A IMAGEM LOCAL) -->
+      <div class="relative w-full max-w-md aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl">
+        <img 
+          src={fotoSobre.src}
+          alt="Foto da Psicóloga Fabíola Medeiros em seu consultório em Tubarão/SC" 
+          class="w-full h-full object-cover"
+          loading="lazy"
+          width="800"
+          height="1000"
+        />
+      </div>
+
+      <!-- Card do CRP (Flutuante sobre a imagem no mobile, ao lado no desktop) -->
+      <div class="absolute -bottom-6 right-4 md:-right-8 md:bottom-8 bg-background border border-border p-4 md:p-5 rounded-2xl shadow-lg max-w-[160px] md:max-w-[200px] text-center md:text-left">
+        <p class="font-display text-xl md:text-2xl text-accent font-semibold">CRP 12/26596</p>
+        <p class="text-xs text-text-secondary mt-1 leading-tight">Registro Profissional Ativo</p>
+      </div>
+    </div>
+
+    <!-- Lado Direito: Texto Humanizado -->
+    <div class="space-y-6 md:space-y-8 text-center md:text-left">
+      
+      <div class="space-y-4">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-accent-light text-accent text-xs font-semibold tracking-wide uppercase">
+          Quem sou eu
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-text-primary leading-tight">
+          Olá, sou a <span class="italic text-accent">Fabíola</span>.
+        </h2>
+      </div>
+
+      <div class="space-y-4 text-text-secondary text-base md:text-lg leading-relaxed">
+        <p>
+          Sou psicóloga clínica pós-graduada em Terapia Cognitivo-Comportamental (TCC). Acredito que a terapia é um espaço de encontro consigo mesmo, livre de julgamentos.
+        </p>
+        <p>
+          Meu trabalho é guiado pela ética, pelo sigilo e pelo acolhimento. Estou aqui para caminhar ao seu lado, ajudando você a compreender suas emoções e a construir uma vida com mais sentido e equilíbrio.
+        </p>
+      </div>
+
+      <!-- Lista de Abordagem / Diferenciais -->
+      <div class="pt-4 space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <p class="text-text-primary font-medium">Atendimento Online e Presencial</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <p class="text-text-primary font-medium">Atendimento a Crianças, Adolescentes e Adultos</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <p class="text-text-primary font-medium">Abordagem Cognitivo-Comportamental (TCC)</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

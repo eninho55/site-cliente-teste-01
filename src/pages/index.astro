@@ -1,17 +1,62 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Services from '../components/sections/Services.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import ContactLocation from '../components/sections/ContactLocation.astro';
+import Footer from '../components/sections/Footer.astro';
 
+const url = "https://fabiolapsi.com.br/";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Psicóloga Fabíola Medeiros | Terapia em Tubarão/SC e Online">
+  
+  <!-- SCHEMA.ORG: FAQPage (Específico da Home) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Você atende crianças e adolescentes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim! Realizo atendimento especializado para crianças (com abordagem lúdica), adolescentes e adultos. Cada faixa etária recebe uma abordagem adequada ao seu desenvolvimento." }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual a diferença entre atendimento online e presencial?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ambas as modalidades oferecem a mesma qualidade técnica e ética. O presencial ocorre em Tubarão/SC, e o online permite flexibilidade de local, mantendo o sigilo e acolhimento." }
+      },
+      {
+        "@type": "Question",
+        "name": "A terapia é sigilosa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim, absolutamente! O sigilo é um princípio ético fundamental. Tudo compartilhado nas sessões é confidencial, garantindo um espaço seguro de confiança." }
+      },
+      {
+        "@type": "Question",
+        "name": "A terapia ajuda mesmo quem não tem um transtorno diagnosticado?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim! A terapia não é apenas para quem tem diagnósticos. Muitas pessoas buscam o processo para autoconhecimento, fortalecimento da autoestima, tomada de decisões ou simplesmente para ter um espaço de escuta qualificada. Todos merecem cuidar da saúde mental."
+        }
+      }
+    ]
+  })} />
+
+  <Navbar slot="navbar" />
+  
+  <div class="overflow-x-hidden">
+    <div id="inicio">
+      <Hero />
+    </div>
+    <About />
+    <Services />
+    <Testimonials />
+    <FAQ />
+    <ContactLocation />
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

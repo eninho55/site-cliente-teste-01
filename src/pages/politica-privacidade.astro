@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+
+<BaseLayout title="Política de Privacidade | Psicóloga Fabíola Medeiros">
+  <Navbar slot="navbar" />
+  
+  <div class="overflow-x-hidden py-20 md:py-32 px-4 md:px-8 bg-background">
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div class="space-y-4">
+        <h1 class="font-display text-3xl md:text-4xl text-text-primary">Política de Privacidade</h1>
+        <p class="text-sm text-text-secondary">Última atualização: {new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+      
+      <div class="space-y-8 text-text-secondary leading-relaxed">
+        <section>
+          <h2 class="font-display text-xl text-text-primary font-semibold mb-3">1. Introdução</h2>
+          <p>Esta Política de Privacidade descreve como coletamos, usamos e protegemos suas informações pessoais, em estrita conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018) e o Código de Ética Profissional do Psicólogo (Resolução CFP nº 010/2005), que garante o sigilo absoluto das informações compartilhadas.</p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl text-text-primary font-semibold mb-3">2. Coleta de Dados</h2>
+          <p>Coletamos apenas os dados estritamente necessários para o agendamento e realização das sessões, como nome, telefone (WhatsApp) e e-mail, fornecidos voluntariamente por você ao entrar em contato através do site.</p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl text-text-primary font-semibold mb-3">3. Sigilo Profissional</h2>
+          <p>Todo o conteúdo abordado nas sessões de psicologia, bem como seus dados cadastrais, é protegido por sigilo profissional. Nenhuma informação será compartilhada com terceiros sem o seu consentimento expresso e por escrito, exceto nos casos de risco iminente à vida, conforme previsto no Código de Ética.</p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl text-text-primary font-semibold mb-3">4. Seus Direitos (LGPD)</h2>
+          <p>Você tem o direito de solicitar, a qualquer momento, o acesso, a correção ou a exclusão dos seus dados de contato armazenados. Basta enviar uma solicitação através dos nossos canais oficiais de atendimento.</p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl text-text-primary font-semibold mb-3">5. Contato</h2>
+          <p>Para dúvidas sobre esta política ou sobre o tratamento dos seus dados, entre em contato:</p>
+          <ul class="list-disc pl-5 mt-2 space-y-1">
+            <li>WhatsApp: <a href="https://wa.me/5548999973155" class="text-accent hover:underline font-medium">(48) 99997-3155</a></li>
+            <!-- <li>E-mail: <a href="mailto:contato@psicologafabiola.com.br" class="text-accent hover:underline font-medium">contato@psicologafabiola.com.br</a></li> -->
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
