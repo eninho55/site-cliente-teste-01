@@ -7,7 +7,7 @@ export const blogPosts = [
     category: "Psicologia Infantil",
     date: "12 de julho de 2026",
     readTime: "5 min",
-    emoji: "",
+    emoji: " 👶",
     excerpt: "Muitos pais se perguntam qual é o momento certo de buscar ajuda profissional. A verdade é que não existe idade mínima — o que importa é identificar sinais de dificuldades emocionais.",
     content: `
       <p class="mb-4">Muitos pais se perguntam qual é o momento certo de buscar ajuda profissional para seus filhos. A verdade é que não existe uma idade mínima para iniciar acompanhamento psicológico — o que importa é identificar sinais de que a criança está passando por dificuldades emocionais ou comportamentais.</p>
