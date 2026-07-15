@@ -8,4 +8,9 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+   // 👇 ADICIONE ESTE BLOCO AQUI 👇
+  redirects: {
+    '/home-2': '/',
+    '/home-2/': '/' // Garante que funcione com ou sem a barra no final
+  }
 });
