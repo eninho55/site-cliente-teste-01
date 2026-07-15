@@ -1,23 +1,6 @@
 ---
 // src/components/sections/Testimonials.astro
-
-const reviews = [
-  {
-    initial: "I",
-    name: "Isabela Farias",
-    text: "Querida e com um olhar que transmite acolhimento. É uma profissional competente, atende com tranquilidade, permitindo que o paciente se expresse e demonstra uma escuta muito atenta."
-  },
-  {
-    initial: "J",
-    name: "Jaime Alves",
-    text: "Ótima profissional, trata minha filha de 8 anos, com muita paciência e carinho, super recomendo."
-  },
-  {
-    initial: "I",
-    name: "Isabella de Souza Costa",
-    text: "Excelente profissional! Muito atenciosa, humana e cuidadosa no acompanhamento. Minha filha se sente acolhida e tivemos mudanças muito positivas após o início das consultas. Recomendo muito!"
-  }
-];
+import { siteConfig } from '../../data/site-config';
 ---
 
 <section id="depoimentos" class="scroll-mt-24 py-20 md:py-32 px-4 md:px-8 bg-surface relative overflow-hidden">
@@ -41,14 +24,14 @@ const reviews = [
       </div>
       
       <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-text-primary leading-tight">
-        O que dizem sobre o <span class="italic text-accent">atendimento</span>
+        {siteConfig.depoimentos?.titulo || 'O que dizem sobre o atendimento'}
       </h2>
     </div>
 
     <!-- Grid de Avaliações -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       
-      {reviews.map((review) => (
+      {siteConfig.depoimentos?.lista.map((review) => (
         <article class="bg-background border border-border rounded-3xl p-6 md:p-8 flex flex-col h-full hover:shadow-lg hover:shadow-accent/5 transition-shadow duration-500">
           
           <!-- Estrelas -->
@@ -62,17 +45,17 @@ const reviews = [
 
           <!-- Texto do Depoimento -->
           <p class="text-text-secondary leading-relaxed mb-6 flex-grow italic">
-            "{review.text}"
+            "{review.texto}"
           </p>
 
           <!-- Autor -->
           <div class="flex items-center gap-4 pt-4 border-t border-border">
             <!-- Avatar com Inicial -->
             <div class="w-10 h-10 rounded-full bg-accent-light text-accent flex items-center justify-center font-display font-bold text-lg flex-shrink-0">
-              {review.initial}
+              {review.inicial}
             </div>
             <div>
-              <p class="font-semibold text-text-primary text-sm">{review.name}</p>
+              <p class="font-semibold text-text-primary text-sm">{review.nome}</p>
               <p class="text-xs text-text-secondary flex items-center gap-1 mt-0.5">
                 <span>Via Google Maps</span>
               </p>

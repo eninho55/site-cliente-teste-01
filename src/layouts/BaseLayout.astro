@@ -1,19 +1,21 @@
 ---
 import '../styles/global.css';
+import { siteConfig } from '../data/site-config';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
 }
 
+// Se a página passar um título personalizado, usamos ele. Senão, usamos o padrão do config.
 const { 
-  title, 
-  description = "Espaço seguro de escuta e acolhimento para crianças, adolescentes e adultos. Atendimento presencial em Tubarão/SC e online. Cuide da sua saúde mental." 
+  title = siteConfig.site.title, 
+  description = siteConfig.site.description 
 } = Astro.props;
 
-const url = "https://fabiolapsi.com.br/";
-const imageUrl = "https://lh3.googleusercontent.com/mrByRWAG_Y_SYt3ftx2zZHtZ6J79H0ccEZee1pOlQZUrPRyiRXnSrs47Cigl53guVPfpVCwUYjAASOxb=w941";
-const logoUrl = "https://lh3.googleusercontent.com/a-/ALV-UjWgB_Qz22nUqMTILAauTzG1oP-C2xSTeN_nUxp4-DKuW45zw9Fz=w941";
+const url = siteConfig.site.url;
+const imageUrl = siteConfig.brand.fotoPerfil;
+const logoUrl = siteConfig.brand.logo;
 ---
 
 <!doctype html>
@@ -22,14 +24,13 @@ const logoUrl = "https://lh3.googleusercontent.com/a-/ALV-UjWgB_Qz22nUqMTILAauTz
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
-    <!-- Favicon (Certifique-se de colocar o arquivo na pasta public/) -->
-    <link rel="icon" type="image/svg+xml" href="/fabiola-psicologa-logo-512x512.png" />
+    <link rel="icon" type="image/svg+xml" href={siteConfig.brand.favicon} />
     
     <!-- SEO Básico -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#FAFAF9" />
+    <meta name="theme-color" content={siteConfig.design.themeColor} />
     <link rel="canonical" href={url} />
 
     <!-- Open Graph / Facebook -->
@@ -38,34 +39,27 @@ const logoUrl = "https://lh3.googleusercontent.com/a-/ALV-UjWgB_Qz22nUqMTILAauTz
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
-    <meta property="og:site_name" content="Psicóloga Fabíola Medeiros" />
+    <meta property="og:site_name" content={siteConfig.brand.name} />
     <meta property="og:image" content={imageUrl} />
-    <meta property="og:updated_time" content="2026-07-11T14:00:00+00:00" />
-
-    <!-- Article Tags -->
-    <meta property="article:published_time" content="2026-01-01T08:00:00+00:00" />
-    <meta property="article:modified_time" content="2026-07-11T14:00:00+00:00" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content="Psicóloga Clínica CRP 12/26596. Atendimento presencial e online. Acredite no poder da sua própria transformação." />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
 
-    <!-- ========================================== -->
-    <!-- SCHEMA.ORG: MedicalBusiness (Negócio Local) -->
-    <!-- ========================================== -->
+    <!-- Schema.org: MedicalBusiness -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
       "@id": `${url}#business`,
-      "name": "Psicóloga Fabíola Medeiros",
-      "alternateName": "Fabíola de Souza Medeiros Castro",
+      "name": `Psicóloga ${siteConfig.brand.name}`,
+      "alternateName": siteConfig.site.author,
       "url": url,
       "logo": logoUrl,
       "image": imageUrl,
-      "description": "Psicóloga clínica com atendimento para crianças, adolescentes e adultos. Terapia Cognitivo-Comportamental (TCC) em Tubarão/SC e online.",
-      "telephone": "+55-48-99997-3155",
+      "description": siteConfig.site.description,
+      "telephone": siteConfig.brand.phone,
       "priceRange": "$$",
       "medicalSpecialty": "Psychology",
       "address": {
@@ -81,81 +75,37 @@ const logoUrl = "https://lh3.googleusercontent.com/a-/ALV-UjWgB_Qz22nUqMTILAauTz
         "latitude": "-28.4829675",
         "longitude": "-48.9959943"
       },
-      "hasMap": "https://www.google.com/maps/place/Psic%C3%B3loga+Fab%C3%ADola+Medeiros+Tubarao+SC+e+online/@-28.4830099,-48.995592,18z/data=!4m6!3m5!1s0x952143ce2e566913:0x8cf5fdd59713a8bd!8m2!3d-28.4829675!4d-48.9959943!16s%2Fg%2F11y6pfdq4b",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "08:00",
-          "closes": "18:00"
-        }
-      ],
+      "hasMap": siteConfig.brand.mapsUrl,
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }],
       "sameAs": [
-        "https://www.instagram.com/fabiolamedeirospsi/",
-        "https://www.google.com/maps/place/Psic%C3%B3loga+Fab%C3%ADola+Medeiros+Tubarao+SC+e+online/@-28.4830099,-48.995592,18z/data=!4m6!3m5!1s0x952143ce2e566913:0x8cf5fdd59713a8bd!8m2!3d-28.4829675!4d-48.9959943!16s%2Fg%2F11y6pfdq4b"
+        `https://www.instagram.com/${siteConfig.brand.instagram.replace('@', '')}/`,
+        siteConfig.brand.mapsUrl
       ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Serviços de Psicologia",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "MedicalTherapy", "name": "Psicologia Infantil", "description": "Atendimento lúdico e acolhedor para crianças" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MedicalTherapy", "name": "Terapia para Adolescentes", "description": "Espaço de escuta para demandas da adolescência" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MedicalTherapy", "name": "Terapia para Adultos", "description": "Terapia individual focada em ansiedade, estresse e autoconhecimento" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MedicalTherapy", "name": "Atendimento Online", "description": "Consultas por videochamada" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MedicalTherapy", "name": "Autoestima e Autoconhecimento", "description": "Desenvolvimento pessoal e fortalecimento da autoestima" } }
-        ]
-      },
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
         "reviewCount": "20",
         "bestRating": "5",
         "worstRating": "1"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Isabela Farias" },
-          "datePublished": "2024-09-26",
-          "reviewBody": "Querida e com um olhar que transmite acolhimento. É uma profissional competente, atende com tranquilidade, permitindo que o paciente se expresse e demonstra uma escuta muito atenta.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-        },
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Jaime Alves" },
-          "datePublished": "2024-07-18",
-          "reviewBody": "Ótima profissional, trata minha filha de 8 anos, com muita paciência e carinho, super recomendo.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-        },
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Isabella de Souza Costa" },
-          "datePublished": "2026-05-11",
-          "reviewBody": "Excelente profissional! Muito atenciosa, humana e cuidadosa no acompanhamento. Minha filha se sente acolhida e tivemos mudanças muito positivas após o início das consultas. Recomendo muito!",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-        }
-      ]
+      }
     })} />
 
-    <!-- ========================================== -->
-    <!-- SCHEMA.ORG: Person (Profissional) -->
-    <!-- ========================================== -->
+    <!-- Schema.org: Person -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Fabíola de Souza Medeiros Castro",
-      "jobTitle": "Psicóloga Clínica",
-      "worksFor": {
-        "@type": "MedicalBusiness",
-        "@id": `${url}#business`,
-        "name": "Psicóloga Fabíola Medeiros"
-      },
+      "name": siteConfig.site.author,
+      "jobTitle": siteConfig.brand.profession,
+      "worksFor": { "@type": "MedicalBusiness", "@id": `${url}#business` },
       "url": url,
       "image": imageUrl,
-      "sameAs": ["https://www.instagram.com/fabiolamedeirospsi/"],
-      "knowsAbout": ["Psicologia Infantil", "Psicologia Adolescente", "Terapia Cognitivo-Comportamental", "Ansiedade", "Depressão", "Autoconhecimento"]
+      "sameAs": [`https://www.instagram.com/${siteConfig.brand.instagram.replace('@', '')}/`]
     })} />
-
   </head>
   <body class="flex flex-col min-h-screen overflow-x-hidden bg-background text-text-primary">
     <slot name="navbar" />

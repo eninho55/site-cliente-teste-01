@@ -1,6 +1,11 @@
 ---
 // src/components/sections/Footer.astro
+import { siteConfig } from '../../data/site-config';
+
+// Remove o '@' do instagram para criar a URL corretamente
+const instagramUrl = siteConfig.brand.instagram.replace('@', '');
 ---
+
 <footer class="bg-[#1C1917] text-stone-400 pt-16 pb-8 px-4 md:px-8">
   <div class="max-w-6xl mx-auto">
     
@@ -8,19 +13,19 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 mb-12">
       
       <!-- Coluna 1: Marca -->
-<div class="space-y-4">
-  <div class="flex items-center gap-3">
-    <img 
-      src="/fabiola-psicologa-logo-512x512.png" 
-      alt="Logo Psicóloga Fabíola Medeiros" 
-      class="w-10 h-10 object-contain"
-    />
-    <span class="font-display text-xl font-semibold text-stone-100">Fabíola Medeiros</span>
-  </div>
-  <p class="text-sm leading-relaxed text-stone-400">
-    Psicóloga clínica em Tubarão/SC. Atendimento humanizado para crianças, adolescentes e adultos, presencial e online.
-  </p>
-</div>
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <img 
+            src={siteConfig.brand.logo} 
+            alt={`Logo ${siteConfig.brand.name}`} 
+            class="w-10 h-10 rounded-full object-cover border border-stone-700" 
+          />
+          <span class="font-display text-xl font-semibold text-stone-100">{siteConfig.brand.name}</span>
+        </div>
+        <p class="text-sm leading-relaxed text-stone-400">
+          {siteConfig.brand.profession} em {siteConfig.brand.city}. Atendimento humanizado para crianças, adolescentes e adultos, presencial e online.
+        </p>
+      </div>
 
       <!-- Coluna 2: Navegação -->
       <div>
@@ -31,8 +36,8 @@
           <li><a href="/#servicos" class="text-sm hover:text-white transition-colors duration-300">Serviços</a></li>
           <li><a href="/#depoimentos" class="text-sm hover:text-white transition-colors duration-300">Depoimentos</a></li>
           <li><a href="/#faq" class="text-sm hover:text-white transition-colors duration-300">Dúvidas Frequentes</a></li>
-          <li><a href="/#contato" class="text-sm hover:text-white transition-colors duration-300">Localização</a></li>
           <li><a href="/blog" class="text-sm hover:text-white transition-colors duration-300">Blog</a></li>
+          <li><a href="/#contato" class="text-sm hover:text-white transition-colors duration-300">Localização</a></li>
         </ul>
       </div>
 
@@ -47,31 +52,31 @@
         </ul>
       </div>
 
-      <!-- Coluna 4: Contato -->
+      <!-- Coluna 4: Contato (Totalmente Dinâmico) -->
       <div>
         <h4 class="font-display text-lg font-semibold text-stone-100 mb-4">Contato</h4>
         <ul class="space-y-4 text-sm">
           <li>
-            <a href="https://wa.me/5548999973155" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors duration-300 group">
+            <a href={`https://wa.me/${siteConfig.brand.whatsapp}`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors duration-300 group">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#7DA0A3] group-hover:text-[#25D366] transition-colors"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              (48) 99997-3155
+              {siteConfig.brand.phone}
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com/fabiolamedeirospsi/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors duration-300 group">
+            <a href={`https://www.instagram.com/${instagramUrl}/`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors duration-300 group">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#7DA0A3] group-hover:text-[#E1306C] transition-colors"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              @fabiolamedeirospsi
+              {siteConfig.brand.instagram}
             </a>
           </li>
           <li>
-            <a href="https://www.google.com/maps/place/Psic%C3%B3loga+Fab%C3%ADola+Medeiros+Tubarao+SC+e+online/@-28.4830099,-48.995592,18z/data=!4m6!3m5!1s0x952143ce2e566913:0x8cf5fdd59713a8bd!8m2!3d-28.4829675!4d-48.9959943!16s%2Fg%2F11y6pfdq4b" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 hover:text-white transition-colors duration-300">
+            <a href={siteConfig.brand.mapsUrl} target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 hover:text-white transition-colors duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0 text-[#7DA0A3]"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>R. José Evaristo Fogaça, 636<br/>Vila Moema - Tubarão/SC</span>
+              <span>{siteConfig.brand.address}</span>
             </a>
           </li>
           <li class="flex items-center gap-2 pt-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#7DA0A3]"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span class="font-medium text-stone-200">CRP 12/26596</span>
+            <span class="font-medium text-stone-200">CRP {siteConfig.brand.crp}</span>
           </li>
         </ul>
       </div>
@@ -79,19 +84,19 @@
 
     <!-- Barra Inferior -->
     <div class="border-t border-stone-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500">
-      <span>&copy; {new Date().getFullYear()} Fabíola Medeiros — Psicóloga Clínica. Todos os direitos reservados.</span>
+      <span>&copy; {new Date().getFullYear()} {siteConfig.brand.name} — {siteConfig.brand.profession}. Todos os direitos reservados.</span>
       <div class="flex gap-4">
-        <a href="/politica-privacidade"" class="hover:text-stone-300 transition-colors">Política de Privacidade</a>
+        <a href="/politica-privacidade" class="hover:text-stone-300 transition-colors">Política de Privacidade</a>
         <span>·</span>
-        <span>CRP 12/26596 · Tubarão/SC</span>
+        <span>CRP {siteConfig.brand.crp} · {siteConfig.brand.city}</span>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- Botão Flutuante do WhatsApp (Continua sobrepondo tudo) -->
+<!-- Botão Flutuante do WhatsApp (Também Dinâmico) -->
 <a 
-  href="https://wa.me/5548999973155?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta!" 
+  href={`https://wa.me/${siteConfig.brand.whatsapp}?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta!`} 
   target="_blank" 
   rel="noopener noreferrer" 
   class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg shadow-[#25D366]/30 hover:bg-[#20bd5a] hover:scale-110 transition-all duration-300 flex items-center justify-center group" 

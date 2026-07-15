@@ -1,20 +1,22 @@
 ---
 // src/components/sections/Navbar.astro
+import { siteConfig } from '../../data/site-config';
 ---
+
 <nav class="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border transition-all duration-300">
   <div class="w-full max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
     
-    <!-- Logo com Imagem -->
-<a href="/#inicio" class="flex items-center gap-2.5 whitespace-nowrap">
-  <img 
-    src="/fabiola-psicologa-logo-512x512.png" 
-    alt="Logo Psicóloga Fabíola" 
-    class="w-9 h-9 md:w-10 md:h-10 object-contain"
-  />
-  <span class="font-display text-lg md:text-xl text-text-primary tracking-tight">
-    Fabíola Medeiros<span class="text-accent">.</span>
-  </span>
-</a>
+    <!-- Logo Dinâmico -->
+    <a href="/#inicio" class="flex items-center gap-2.5 whitespace-nowrap">
+      <img 
+        src={siteConfig.brand.logo} 
+        alt={`Logo ${siteConfig.brand.name}`} 
+        class="w-9 h-9 md:w-10 md:h-10 object-contain"
+      />
+      <span class="font-display text-lg md:text-xl text-text-primary tracking-tight">
+        {siteConfig.brand.name}<span class="text-accent">.</span>
+      </span>
+    </a>
 
     <!-- Links de Navegação (Desktop) -->
     <div class="hidden lg:flex items-center gap-6 xl:gap-8">
@@ -22,8 +24,8 @@
       <a href="/#servicos" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Serviços</a>
       <a href="/#depoimentos" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Depoimentos</a>
       <a href="/#faq" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Dúvidas</a>
-      <a href="/#contato" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Localização</a>
       <a href="/blog" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Blog</a>
+      <a href="/#contato" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Localização</a>
     </div>
 
     <!-- CTA (Desktop) -->
@@ -45,12 +47,12 @@
       <a href="/#servicos" class="text-base font-medium text-text-secondary hover:text-accent py-2">Serviços</a>
       <a href="/#depoimentos" class="text-base font-medium text-text-secondary hover:text-accent py-2">Depoimentos</a>
       <a href="/#faq" class="text-base font-medium text-text-secondary hover:text-accent py-2">Dúvidas Frequentes</a>
+      <a href="/blog" class="text-base font-medium text-text-secondary hover:text-accent py-2">Blog</a>
       <a href="/#contato" class="text-base font-medium text-text-secondary hover:text-accent py-2 font-semibold">Localização e Contato</a>
       
       <a href="/#contato" class="w-full text-center px-6 py-3.5 text-base font-semibold text-white bg-accent rounded-full hover:bg-accent-hover transition-colors mt-2">
         Agendar Consulta
       </a>
-      <a href="/blog" class="text-sm font-medium text-text-secondary hover:text-accent transition-colors">Blog</a>
     </div>
   </div>
 </nav>

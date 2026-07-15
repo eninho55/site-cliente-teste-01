@@ -1,6 +1,8 @@
 ---
 // src/components/sections/FAQ.astro
+import { siteConfig } from '../../data/site-config';
 ---
+
 <section id="faq" class="scroll-mt-24 py-20 md:py-32 px-4 md:px-8 bg-background relative overflow-hidden">
   
   <!-- Detalhe decorativo de fundo -->
@@ -14,76 +16,32 @@
         Dúvidas frequentes
       </span>
       <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-text-primary leading-tight">
-        Perguntas <span class="italic text-accent">frequentes</span>
+        {siteConfig.faq?.titulo || 'Perguntas frequentes'}
       </h2>
+      <p class="text-text-secondary text-lg leading-relaxed">
+        {siteConfig.faq?.subtitulo || 'Tire suas dúvidas sobre o atendimento psicológico'}
+      </p>
     </div>
 
     <!-- Lista de FAQ (Acordeão) -->
     <div class="space-y-4">
       
-      <!-- Item 1 -->
-      <div class="faq-item bg-surface border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30">
-        <button class="faq-question w-full flex items-center justify-between p-6 text-left focus:outline-none" aria-expanded="false">
-          <span class="font-display text-lg md:text-xl text-text-primary font-medium pr-4">Você atende crianças e adolescentes?</span>
-          <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent flex items-center justify-center transition-transform duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plus-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="minus-icon hidden"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </span>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-text-secondary leading-relaxed">
-            Sim! Realizo atendimento para crianças (com abordagem lúdica), adolescentes e adultos. Cada faixa etária recebe uma abordagem adequada ao seu desenvolvimento.
-          </p>
+      {siteConfig.faq?.perguntas.map((item, index) => (
+        <div class="faq-item bg-surface border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30">
+          <button class="faq-question w-full flex items-center justify-between p-6 text-left focus:outline-none" aria-expanded="false">
+            <span class="font-display text-lg md:text-xl text-text-primary font-medium pr-4">{item.pergunta}</span>
+            <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent flex items-center justify-center transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plus-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="minus-icon hidden"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer hidden px-6 pb-6">
+            <p class="text-text-secondary leading-relaxed">
+              {item.resposta}
+            </p>
+          </div>
         </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="faq-item bg-surface border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30">
-        <button class="faq-question w-full flex items-center justify-between p-6 text-left focus:outline-none" aria-expanded="false">
-          <span class="font-display text-lg md:text-xl text-text-primary font-medium pr-4">Qual a diferença entre atendimento online e presencial?</span>
-          <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent flex items-center justify-center transition-transform duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plus-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="minus-icon hidden"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </span>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-text-secondary leading-relaxed">
-            Ambas as modalidades oferecem a mesma qualidade técnica e ética. O presencial ocorre em Tubarão/SC, e o online permite flexibilidade de local, mantendo o sigilo e acolhimento.
-          </p>
-        </div>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="faq-item bg-surface border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30">
-        <button class="faq-question w-full flex items-center justify-between p-6 text-left focus:outline-none" aria-expanded="false">
-          <span class="font-display text-lg md:text-xl text-text-primary font-medium pr-4">A terapia ajuda mesmo quem não tem um transtorno diagnosticado?</span>
-          <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent flex items-center justify-center transition-transform duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plus-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="minus-icon hidden"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </span>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-text-secondary leading-relaxed">
-            Sim! A terapia não é apenas para quem tem diagnósticos. Muitas pessoas buscam o processo para autoconhecimento, fortalecimento da autoestima, tomada de decisões ou simplesmente para ter um espaço de escuta qualificada. Todos merecem cuidar da saúde mental.
-          </p>
-        </div>
-      </div>
-
-      <!-- Item 4 -->
-      <div class="faq-item bg-surface border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30">
-        <button class="faq-question w-full flex items-center justify-between p-6 text-left focus:outline-none" aria-expanded="false">
-          <span class="font-display text-lg md:text-xl text-text-primary font-medium pr-4">A terapia é sigilosa?</span>
-          <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent flex items-center justify-center transition-transform duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plus-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="minus-icon hidden"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </span>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-text-secondary leading-relaxed">
-            Sim, absolutamente! O sigilo é um princípio ético fundamental. Tudo compartilhado nas sessões é confidencial, garantindo um espaço seguro de confiança.
-          </p>
-        </div>
-      </div>
+      ))}
 
     </div>
   </div>
