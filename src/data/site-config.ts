@@ -12,7 +12,7 @@ export const siteConfig = {
     author: "Fabíola de Souza Medeiros Castro",
   },
   brand: {
-    name: "Dra. Teste Final",
+    name: "Fabíola Medeiros ",
     profession: "Psicóloga Clínica",
     crp: "12/26596",
     city: "Tubarão/SC",
