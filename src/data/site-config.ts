@@ -141,6 +141,7 @@ export const siteConfig = {
     enderecoTitulo: "Consultório Presencial",
     onlineTitulo: "Atendimento Online",
     onlineDescricao: "Sessões por videochamada para todo o Brasil e exterior, com a mesma qualidade e sigilo do presencial.",
+    convenios: ["Vida Cotidiana", "MedPrev", "PAF", "Unimed"],
     ctaBotao: "Agendar pelo WhatsApp",
     ctaSubtexto: "Resposta em até 24 horas úteis.",
     mapaBotao: "Abrir no Google Maps"
