@@ -48,8 +48,7 @@ const articleSchema = {
   title={`${post.title} | ${siteConfig.brand.name}`}
   description={post.excerpt}
 >
-  <article class="max-w-3xl mx-auto px-4 md:px-8 py-16 md:py-24">
-    
+<article class="max-w-3xl mx-auto px-4 md:px-8 py-16 md:py-24" transition:animate="fade" transition:duration="300ms">    
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
     

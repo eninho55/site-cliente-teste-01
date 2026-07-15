@@ -11,5 +11,6 @@ export default defineConfig({
   },
   redirects: {
     '/home-2': '/' // Apenas esta única linha
-  }
+  },
+    viewTransitions: true
 });
