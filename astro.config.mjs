@@ -3,14 +3,20 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
-  site: 'https://fabiolapsi.com.br', 
+  site: 'https://fabiolapsi.com.br',
   integrations: [sitemap()],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   redirects: {
     '/home-2': '/' // Apenas esta única linha
   },
-    viewTransitions: true
+
+  viewTransitions: true,
+  adapter: cloudflare()
 });
