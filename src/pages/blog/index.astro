@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/sections/Navbar.astro'; // ✅ Import do Menu
+import Footer from '../../components/sections/Footer.astro'; // ✅ Import do Rodapé
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../../data/site-config';
+
+const posts = await getCollection('blog');
+
+posts.sort((a, b) => {
+  const dateA = new Date(a.data.date).getTime() || 0;
+  const dateB = new Date(b.data.date).getTime() || 0;
+  return dateB - dateA;
+});
+---
+
+<BaseLayout
+  title="Blog | Psicóloga Fabíola"
+  description="Artigos, dicas e reflexões sobre saúde mental, ansiedade e bem-estar."
+>
+  <!-- ✅ SLOT DO MENU DE NAVEGAÇÃO -->
+  <Navbar slot="navbar" />
+
+  <section class="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    
+    <!-- Cabeçalho da Página (Botão de voltar removido) -->
+    <header class="text-center mb-12 md:mb-16">
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl text-text-primary leading-tight mb-4">
+        Blog
+      </h1>
+      <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+        Conteúdos para cuidar da sua saúde mental e promover o seu bem-estar.
+      </p>
+    </header>
+
+    <!-- Grid de Artigos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map((post) => (
+        <article class="bg-surface border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+          
+          <!-- Link que envolve o card inteiro -->
+          <a href={`/blog/${post.id}/`} class="block flex-grow flex flex-col group">
+            
+            {/* ✅ Thumbnail ou Fallback (Emoji) - 100% Seguro com .src */}
+            {post.data.image?.src ? (
+              <div class="relative w-full aspect-video overflow-hidden rounded-t-2xl bg-muted">
+                <img 
+                  src={post.data.image.src} 
+                  alt={post.data.imageCaption || post.data.title}
+                  width={post.data.image.width}
+                  height={post.data.image.height}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <div class="relative w-full aspect-video overflow-hidden rounded-t-2xl bg-gradient-to-br from-accent-light/50 to-accent-light/20 flex items-center justify-center">
+                <span class="text-6xl transition-transform duration-500 group-hover:scale-110">
+                  {post.data.emoji || '📝'}
+                </span>
+              </div>
+            )}
+            
+            <!-- Conteúdo do Card -->
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex items-center gap-3 mb-3">
+                <a 
+                  href={`/blog/categoria/${post.data.category.toLowerCase()}/`}
+                  class="px-3 py-1 text-xs font-semibold bg-accent-light text-accent rounded-full hover:bg-accent hover:text-white transition-colors"
+                  onclick={(e) => e.stopPropagation()}
+                >
+                  {post.data.category}
+                </a>
+                <span class="text-xs text-text-secondary">{post.data.date}</span>
+              </div>
+              
+              <h2 class="font-display text-xl text-text-primary font-semibold mb-3 group-hover:text-accent transition-colors line-clamp-2">
+                {post.data.title}
+              </h2>
+              
+              <p class="text-text-secondary text-sm line-clamp-3 mb-4 leading-relaxed flex-grow">
+                {post.data.excerpt}
+              </p>
+              
+              <div class="flex items-center justify-between text-sm mt-auto">
+                <span class="text-text-secondary">{post.data.readTime} de leitura</span>
+                <span class="text-accent font-medium flex items-center gap-1 group-hover:underline">
+                  Ler mais →
+                </span>
+              </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <!-- Mensagem caso não haja posts -->
+    {posts.length === 0 && (
+      <div class="text-center py-16">
+        <p class="text-text-secondary text-lg">Nenhum artigo publicado ainda. Volte em breve!</p>
+      </div>
+    )}
+
+  </section>
+
+  <!-- ✅ SLOT DO FOOTER -->
+  <Footer slot="footer" />
+</BaseLayout>

@@ -8,23 +8,27 @@ export const siteConfig = {
   site: {
     title: "Psicóloga Fabíola Medeiros | Terapia em Tubarão/SC e Online",
     description: "Espaço seguro de escuta e acolhimento para crianças, adolescentes e adultos. Atendimento presencial em Tubarão/SC e online. Cuide da sua saúde mental.",
-    url: "https://fabiolapsi.com.br",
+    url: "https://fabiolapsi.com.br", // ⚠️ SEM barra no final (crucial para o Schema)
     author: "Fabíola de Souza Medeiros Castro",
   },
   brand: {
-    name: "Fabíola Medeiros ",
+    name: "Fabíola Medeiros", // Espaço extra removido
     profession: "Psicóloga Clínica",
     crp: "12/26596",
     city: "Tubarão/SC",
     address: "R. José Evaristo Fogaça, 636 - Vila Moema, Tubarão - SC, 88705-060",
-    phone: "+55-48-99997-3155",
-    whatsapp: "5548999973155",
+    phone: "+55 48 99997-3155",
+    whatsapp: "5548999973155", // Apenas números para o link wa.me
     email: "contato@fabiolapsi.com.br",
-    instagram: "@fabiolamedeirospsi",
     logo: "/fabiola-psicologa-logo-512x512.png",
     favicon: "/favicon-fabiola-psicologa-tubarao-sc.png",
-    fotoPerfil: fotoPerfil.src, // Foto da Hero
+    fotoPerfil: fotoPerfil.src,
     mapsUrl: "https://www.google.com/maps/place/Psic%C3%B3loga+Fab%C3%ADola+Medeiros+Tubarao+SC+e+online/@-28.4830099,-48.995592,18z/data=!4m6!3m5!1s0x952143ce2e566913:0x8cf5fdd59713a8bd!8m2!3d-28.4829675!4d-48.9959943!16s%2Fg%2F11y6pfdq4b",
+  },
+  // ✅ NOVO: Objeto social dedicado (facilita a leitura pelo Schema.org)
+  social: {
+    instagram: "https://instagram.com/fabiolamedeirospsi",
+    whatsapp: "https://wa.me/5548999973155",
   },
   design: {
     themeColor: "#FAFAF9", 
@@ -79,16 +83,15 @@ export const siteConfig = {
     badge: "Quem sou eu",
     titulo: "Olá, sou a",
     tituloDestaque: "Fabíola",
-    foto: fotoSobre.src, // 👈 NOVO: Foto específica da seção Sobre
+    foto: fotoSobre.src, // O Astro resolve isso para o caminho correto da imagem otimizada
     paragrafo1: "Sou psicóloga clínica pós-graduada em Terapia Cognitivo-Comportamental (TCC). Acredito que a terapia é um espaço de encontro consigo mesmo, livre de julgamentos.",
     paragrafo2: "Meu trabalho é guiado pela ética, pelo sigilo e pelo acolhimento. Estou aqui para caminhar ao seu lado, ajudando você a compreender suas emoções e a construir uma vida com mais sentido e equilíbrio.",
     diferenciais: [
       "Atendimento Online e Presencial",
       "Atendimento a Adolescentes e Adultos",
-      "Abordagem Cognitivo-Comportamental"
+      "Abordagem Cognitivo-Comportamental (TCC)" // Adicionei TCC para ficar mais específico no Schema
     ]
   },
-  // 👇 ADICIONE ESTE BLOCO AQUI 👇
   depoimentos: {
     titulo: "O que dizem sobre o atendimento",
     lista: [
@@ -109,7 +112,6 @@ export const siteConfig = {
       }
     ]
   },
-   // 👇 ADICIONE ESTE BLOCO AQUI 👇
   faq: {
     titulo: "Perguntas frequentes",
     subtitulo: "Tire suas dúvidas sobre o atendimento psicológico",
@@ -132,7 +134,6 @@ export const siteConfig = {
       }
     ]
   },
-  // 👇 ADICIONE ESTE BLOCO AQUI 👇
   contato: {
     badge: "Entre em Contato",
     titulo: "Vamos iniciar sua",

@@ -14,8 +14,13 @@ const {
 } = Astro.props;
 
 const url = siteConfig.site.url;
-const imageUrl = siteConfig.brand.fotoPerfil;
+// Fallback seguro caso a imagem de perfil não carregue por algum motivo
+const imageUrl = siteConfig.brand.fotoPerfil || siteConfig.brand.logo;
 const logoUrl = siteConfig.brand.logo;
+
+// ✅ CORREÇÃO DO ERRO: Tratamento seguro do Instagram com Optional Chaining (?.)
+const igHandle = siteConfig.brand.instagram?.replace('@', '') || 'fabiolamedeirospsi';
+const instagramUrl = `https://www.instagram.com/${igHandle}/`;
 ---
 
 <!doctype html>
@@ -31,6 +36,23 @@ const logoUrl = siteConfig.brand.logo;
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content={siteConfig.design.themeColor} />
+    
+    <!-- ✅ Schema.org WebSite com SearchAction -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": siteConfig.brand.name,
+      "url": url,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${url}/blog?search={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    })} />
+    
     <link rel="canonical" href={url} />
 
     <!-- Open Graph / Facebook -->
@@ -83,7 +105,7 @@ const logoUrl = siteConfig.brand.logo;
         "closes": "18:00"
       }],
       "sameAs": [
-        `https://www.instagram.com/${siteConfig.brand.instagram.replace('@', '')}/`,
+        instagramUrl, // ✅ Usa a variável segura
         siteConfig.brand.mapsUrl
       ],
       "aggregateRating": {
@@ -104,7 +126,7 @@ const logoUrl = siteConfig.brand.logo;
       "worksFor": { "@type": "MedicalBusiness", "@id": `${url}#business` },
       "url": url,
       "image": imageUrl,
-      "sameAs": [`https://www.instagram.com/${siteConfig.brand.instagram.replace('@', '')}/`]
+      "sameAs": [instagramUrl] // ✅ Usa a variável segura
     })} />
   </head>
   <body class="flex flex-col min-h-screen overflow-x-hidden bg-background text-text-primary">

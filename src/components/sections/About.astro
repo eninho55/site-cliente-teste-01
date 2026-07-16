@@ -1,10 +1,42 @@
 ---
-// src/components/sections/About.astro
 import { siteConfig } from '../../data/site-config';
+
+// ✅ CORREÇÃO: Tratamento seguro da imagem e do Instagram para evitar erros de undefined
+const fotoPath = typeof siteConfig.sobre?.foto === 'object' 
+  ? siteConfig.sobre.foto.src 
+  : (siteConfig.sobre?.foto || siteConfig.brand.logo);
+
+// Blindagem do Instagram (remove o @ com segurança e usa fallback se necessário)
+const igHandle = siteConfig.brand.instagram?.replace('@', '') || 'fabiolamedeirospsi';
+const instagramUrl = `https://instagram.com/${igHandle}`;
+
+// ✅ Construção do Schema.org Person para E-E-A-T (100% Seguro)
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": `${siteConfig.brand.profession} ${siteConfig.brand.name}`,
+  "jobTitle": siteConfig.brand.profession,
+  "description": siteConfig.sobre?.paragrafo1 || `Atendimento psicológico especializado com ${siteConfig.brand.name}.`,
+  "image": `${siteConfig.site.url}${fotoPath}`,
+  "url": siteConfig.site.url,
+  "sameAs": [
+    instagramUrl,
+    `https://wa.me/${siteConfig.brand.whatsapp}`
+  ].filter(Boolean), // Remove qualquer valor undefined por segurança
+  "knowsAbout": siteConfig.sobre?.diferenciais || ["Saúde Mental", "Bem-estar", "Psicoterapia"],
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Conselho Regional de Psicologia",
+    "identifier": `CRP ${siteConfig.brand.crp || 'N/A'}`
+  }
+};
 ---
 
 <section id="sobre" class="scroll-mt-24 py-20 md:py-32 px-4 md:px-8 bg-surface relative overflow-hidden">
   
+  <!-- ✅ Schema.org Person injetado na página -->
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
   <!-- Detalhe decorativo de fundo -->
   <div class="absolute -top-20 -left-20 w-64 h-64 bg-accent-light rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
@@ -19,7 +51,7 @@ import { siteConfig } from '../../data/site-config';
       <div class="relative w-full max-w-md aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl">
         <img 
           src={siteConfig.sobre.foto} 
-          alt={`Foto de ${siteConfig.brand.name}`} 
+          alt={`Foto de ${siteConfig.brand.profession} ${siteConfig.brand.name}`} 
           class="w-full h-full object-cover"
           loading="lazy"
         />
@@ -40,7 +72,7 @@ import { siteConfig } from '../../data/site-config';
           {siteConfig.sobre?.badge || 'Quem sou eu'}
         </span>
         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-text-primary leading-tight">
-          {siteConfig.sobre?.titulo || 'Olá, sou a'} <span class="italic text-accent">{siteConfig.sobre?.tituloDestaque || 'Fabíola'}</span>.
+          {siteConfig.sobre?.titulo || 'Olá, sou a'} <span class="italic text-accent">{siteConfig.sobre?.tituloDestaque || siteConfig.brand.name}</span>.
         </h2>
       </div>
 
@@ -49,9 +81,9 @@ import { siteConfig } from '../../data/site-config';
         <p>{siteConfig.sobre?.paragrafo2}</p>
       </div>
 
-      <!-- Lista de Diferenciais -->
+      <!-- Lista de Diferenciais (Usados também no Schema "knowsAbout") -->
       <div class="pt-4 space-y-3">
-        {siteConfig.sobre?.diferenciais.map((item) => (
+        {siteConfig.sobre?.diferenciais?.map((item) => (
           <div class="flex items-center gap-3">
             <div class="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>

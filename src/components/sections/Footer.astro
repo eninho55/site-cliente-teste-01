@@ -1,9 +1,9 @@
 ---
-// src/components/sections/Footer.astro
 import { siteConfig } from '../../data/site-config';
 
-// Remove o '@' do instagram para criar a URL corretamente
-const instagramUrl = siteConfig.brand.instagram.replace('@', '');
+// ✅ CORREÇÃO: Tratamento seguro do Instagram com Optional Chaining (?.) e fallback
+const igHandle = siteConfig.brand.instagram?.replace('@', '') || 'fabiolamedeirospsi';
+const instagramUrl = `https://www.instagram.com/${igHandle}/`;
 ---
 
 <footer class="bg-[#1C1917] text-stone-400 pt-16 pb-8 px-4 md:px-8">
@@ -52,7 +52,7 @@ const instagramUrl = siteConfig.brand.instagram.replace('@', '');
         </ul>
       </div>
 
-      <!-- Coluna 4: Contato (Totalmente Dinâmico) -->
+      <!-- Coluna 4: Contato (Totalmente Dinâmico e Seguro) -->
       <div>
         <h4 class="font-display text-lg font-semibold text-stone-100 mb-4">Contato</h4>
         <ul class="space-y-4 text-sm">
@@ -63,9 +63,10 @@ const instagramUrl = siteConfig.brand.instagram.replace('@', '');
             </a>
           </li>
           <li>
-            <a href={`https://www.instagram.com/${instagramUrl}/`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors duration-300 group">
+            <!-- ✅ Usa a variável segura instagramUrl -->
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors duration-300 group">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#7DA0A3] group-hover:text-[#E1306C] transition-colors"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              {siteConfig.brand.instagram}
+              {siteConfig.brand.instagram || '@fabiolamedeirospsi'}
             </a>
           </li>
           <li>
@@ -94,7 +95,7 @@ const instagramUrl = siteConfig.brand.instagram.replace('@', '');
   </div>
 </footer>
 
-<!-- Botão Flutuante do WhatsApp (Também Dinâmico) -->
+<!-- Botão Flutuante do WhatsApp (Também Dinâmico e Seguro) -->
 <a 
   href={`https://wa.me/${siteConfig.brand.whatsapp}?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta!`} 
   target="_blank" 
